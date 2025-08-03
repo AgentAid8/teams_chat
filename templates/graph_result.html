@@ -1,0 +1,30 @@
+<!-- templates/graph_result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Teams Chats</title>
+</head>
+<body>
+
+  <h2>Your Teams Chats</h2>
+
+  <!-- Button to download predefined chat messages -->
+  <form action="{{ url_for('download_chat') }}" method="post">
+      <button type="submit">📥 Download Predefined Chat Messages</button>
+  </form>
+
+  <ul>
+    {% for chat in chats %}
+      <li>
+        <strong>Chat ID:</strong> {{ chat.id }}<br>
+        <strong>Type:</strong> {{ chat.chatType }}<br>
+        <a href="{{ url_for('chat_messages', chat_id=chat.id) }}">🔍 View Messages</a><br><br>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <a href="{{ url_for('logout') }}">Logout</a>
+
+</body>
+</html>
